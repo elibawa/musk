@@ -10,5 +10,6 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'rtaglib', '~> 0.3.0'
 
+  s.add_development_dependency 'pry', '~> 0.9.12.6'
   s.add_development_dependency 'rspec', '~> 2.14.1'
 end
