@@ -1,3 +1,4 @@
 .ruby-version
 .bundle
 .rspec
+.DS_Store
