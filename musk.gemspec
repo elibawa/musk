@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 2.14.1'
 
   s.add_runtime_dependency 'taglib-ruby', '~> 0.6.0'
+  s.add_runtime_dependency 'discogs-wrapper', '~> 1.1.4'
 end
