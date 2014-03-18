@@ -1,3 +1,22 @@
 #!/usr/bin/env ruby
 
-puts 'HELLO!'
+require 'gli'
+include GLI::App
+
+desc 'Extract meta-data (tags) from tracks'
+arg_name 'path_to_tracks'
+command :extract do |command|
+  command.action do |global_options, options, args|
+    if args.empty?
+      STDERR.puts 'You must supply a path to tracks'
+      exit 1
+    end
+    unless File.directory?(args.first)
+      STDERR.puts "Unknown path '#{args.first}' to tracks"
+      exit 2
+    end
+    puts 'Extract command is running'
+  end
+end
+
+exit run(ARGV)
