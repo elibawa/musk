@@ -1,12 +1,13 @@
 Gem::Specification.new do |s|
-  s.name    = 'musk'
-  s.version = '0.0.1'
-  s.summary = 'Your music with the demonic scent of musk'
-  s.date    = '2014-03-14'
-  s.author  = 'Eugene Pempel'
-  s.email   = 'eugene.pempel@gmail.com'
-  s.files   = `git ls-files`.split($\)
-  s.license = 'MIT'
+  s.name        = 'musk'
+  s.version     = '0.0.1'
+  s.summary     = 'Your music with the demonic scent of musk'
+  s.date        = '2014-03-14'
+  s.author      = 'Eugene Pempel'
+  s.email       = 'eugene.pempel@gmail.com'
+  s.license     = 'MIT'
+  s.files       = `git ls-files`.split($\)
+  s.executables = `git ls-files -- bin/*`.split($\).map { |f| File.basename(f) }
 
   s.add_runtime_dependency 'gli', '~> 2.9.0'
   s.add_runtime_dependency 'taglib-ruby', '~> 0.6.0'
