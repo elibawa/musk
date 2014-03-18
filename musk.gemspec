@@ -8,9 +8,10 @@ Gem::Specification.new do |s|
   s.files   = `git ls-files`.split($\)
   s.license = 'MIT'
 
-  s.add_development_dependency 'pry', '~> 0.9.12.6'
-  s.add_development_dependency 'rspec', '~> 2.14.1'
-
+  s.add_runtime_dependency 'gli', '~> 2.9.0'
   s.add_runtime_dependency 'taglib-ruby', '~> 0.6.0'
   s.add_runtime_dependency 'discogs-wrapper', '~> 1.1.4'
+
+  s.add_development_dependency 'pry', '~> 0.9.12.6'
+  s.add_development_dependency 'rspec', '~> 2.14.1'
 end
