@@ -1,21 +1,51 @@
 #!/usr/bin/env ruby
 
+require 'taglib'
 require 'gli'
+
 include GLI::App
 
-desc 'Extract meta-data (tags) from tracks'
-arg_name 'path_to_tracks'
+desc 'Extract meta-data (tags) from MP3 files'
+arg_name 'path_to_files'
 command :extract do |command|
   command.action do |global_options, options, args|
     if args.empty?
-      STDERR.puts 'You must supply a path to tracks'
+      STDERR.puts 'Undefined path to an MP3 file or files'
       exit 1
     end
     unless File.directory?(args.first)
-      STDERR.puts "Unknown path '#{args.first}' to tracks"
-      exit 2
+      unless File.file?(args.first)
+        STDERR.puts "Unknown path '#{args.first}' to an MP3 file or files"
+        exit 2
+      end
+      unless File.extname(args.first) == '.mp3'
+        STDERR.puts "Unknown extension '#{File.extname(args.first)}'"
+        exit 2
+      end
     end
-    puts 'Extract command is running'
+    tracks = []
+    if File.file?(args.first)
+      tracks << args.first
+    else
+      Dir.glob(File.join(args.first, '**', '*.mp3')) do |track|
+        tracks << track
+      end
+    end
+    tracks.each_with_index do |track, index|
+      TagLib::MPEG::File.open(track) do |file|
+        tag = file.id3v2_tag
+        puts if index > 0
+        printf("%-9s%s\n", 'File:',    track)
+        printf("%-9s%s\n", 'Cover:',   !tag.frame_list('APIC').first.nil?)
+        printf("%-9s%s\n", 'Track:',   tag.frame_list('TRCK').first)
+        printf("%-9s%s\n", 'Title:',   tag.title)
+        printf("%-9s%s\n", 'Artist:',  tag.artist)
+        printf("%-9s%s\n", 'Album:',   tag.album)
+        printf("%-9s%s\n", 'Genre:',   tag.genre)
+        printf("%-9s%s\n", 'Year:',    tag.year)
+        printf("%-9s%s\n", 'Comment:', tag.comment)
+      end
+    end
   end
 end
 
