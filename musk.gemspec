@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name        = 'musk'
   s.version     = '0.0.1'
   s.summary     = 'Your music with the demonic scent of musk'
-  s.date        = '2014-03-14'
+  s.date        = '2014-03-19'
   s.author      = 'Eugene Pempel'
   s.email       = 'eugene.pempel@gmail.com'
   s.license     = 'MIT'
