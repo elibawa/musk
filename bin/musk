@@ -1,50 +1,29 @@
 #!/usr/bin/env ruby
 
-require 'taglib'
+require 'musk'
 require 'gli'
 
 include GLI::App
 
 desc 'Extract meta-data (tags) from MP3 files'
-arg_name 'path_to_files'
+arg_name 'path_to_file or path_to_files'
 command :extract do |command|
-  command.action do |global_options, options, args|
-    if args.empty?
-      STDERR.puts 'Undefined path to an MP3 file or files'
-      exit 1
-    end
-    unless File.directory?(args.first)
-      unless File.file?(args.first)
-        STDERR.puts "Unknown path '#{args.first}' to an MP3 file or files"
-        exit 2
-      end
-      unless File.extname(args.first) == '.mp3'
-        STDERR.puts "Unknown extension '#{File.extname(args.first)}'"
-        exit 2
-      end
-    end
-    tracks = []
-    if File.file?(args.first)
-      tracks << args.first
-    else
-      Dir.glob(File.join(args.first, '**', '*.mp3')) do |track|
-        tracks << track
-      end
-    end
-    tracks.each_with_index do |track, index|
-      TagLib::MPEG::File.open(track) do |file|
-        tag = file.id3v2_tag
+  command.action do |global_options, options, arguments|
+    begin
+      Musk::Track.load!(arguments.first).each_with_index do |track, index|
         puts if index > 0
-        printf("%-9s%s\n", 'File:',    track)
-        printf("%-9s%s\n", 'Cover:',   !tag.frame_list('APIC').first.nil?)
-        printf("%-9s%s\n", 'Track:',   tag.frame_list('TRCK').first)
-        printf("%-9s%s\n", 'Title:',   tag.title)
-        printf("%-9s%s\n", 'Artist:',  tag.artist)
-        printf("%-9s%s\n", 'Album:',   tag.album)
-        printf("%-9s%s\n", 'Genre:',   tag.genre)
-        printf("%-9s%s\n", 'Year:',    tag.year)
-        printf("%-9s%s\n", 'Comment:', tag.comment)
+        printf("%-10s%s\n", 'Path:',     track.path)
+        printf("%-10s%s\n", 'Title:',    track.title)
+        printf("%-10s%s\n", 'Position:', track.position)
+        printf("%-10s%s\n", 'Artist:',   track.artist)
+        printf("%-10s%s\n", 'Album:',    track.album)
+        printf("%-10s%s\n", 'Genre:',    track.genre)
+        printf("%-10s%s\n", 'Year:',     track.year)
+        printf("%-10s%s\n", 'Comment:',  track.comment)
       end
+    rescue RuntimeError => error
+      STDERR.puts error.message
+      exit 1
     end
   end
 end
