@@ -5,6 +5,7 @@ SimpleCov.start do
 end
 
 require 'factory_girl'
+require 'open3'
 require 'musk'
 
 Dir[File.expand_path("../factories/**/*.rb", __FILE__)].each { |f| require f }
