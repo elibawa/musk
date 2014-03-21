@@ -8,21 +8,14 @@ include GLI::App
 desc 'Extract meta-data (tags) from MP3 files'
 arg_name 'path_to_file or path_to_files'
 command :extract do |command|
+  command.arg_name "format"
+  command.default_value "pretty"
+  command.flag [:f, :format]
   command.action do |global_options, options, arguments|
     begin
-      Musk::Track.load!(arguments.first).each_with_index do |track, index|
-        puts if index > 0
-        printf("%-10s%s\n", 'Path:',     track.path)
-        printf("%-10s%s\n", 'Title:',    track.title)
-        printf("%-10s%s\n", 'Position:', track.position)
-        printf("%-10s%s\n", 'Artist:',   track.artist)
-        printf("%-10s%s\n", 'Album:',    track.album)
-        printf("%-10s%s\n", 'Genre:',    track.genre)
-        printf("%-10s%s\n", 'Year:',     track.year)
-        printf("%-10s%s\n", 'Comment:',  track.comment)
-      end
+      Musk::TrackFormatter.format!(options[:f], Musk::Track.load!(arguments.first))
     rescue RuntimeError => error
-      STDERR.puts error.message
+      STDERR.puts error
       exit 1
     end
   end
