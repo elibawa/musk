@@ -48,7 +48,7 @@ describe Musk::Track do
     end
 
     context "when path is a nonexistent directory" do
-      let(:path) { "/nonexistent" }
+      let(:path) { File.expand_path("../nonexistent", __FILE__) }
       it "should raise \"Unknown path '{path}' to a file or files\"" do
         expect do
           subject.class.load!(path)
@@ -57,8 +57,8 @@ describe Musk::Track do
     end
 
     context "when path is an exisiting directory" do
-      let(:path) { File.join(File.dirname(__FILE__), "../tracks") }
-      it "should load tracks from the directory" do
+      let(:path) { File.expand_path("../../../tracks", __FILE__) }
+      it "should create tracks from files in the directory and its subdirectories" do
         tracks = subject.class.load!(path)
         tracks.count.should eq(2)
         tracks.map(&:title).should eq(["Jets", "Kamakura"])
@@ -66,7 +66,7 @@ describe Musk::Track do
     end
 
     context "when path is a nonexistent file" do
-      let(:path) { File.join(File.dirname(__FILE__), "nonexistent.mp3") }
+      let(:path) { File.expand_path("../nonexistent.mp3", __FILE__) }
       it "should raise \"Unknown path '{path}' to a file or files\"" do
         expect do
           subject.class.load!(path)
@@ -75,7 +75,7 @@ describe Musk::Track do
     end
 
     context "when path is an existing file that is unsupported" do
-      let(:path) { File.join(File.dirname(__FILE__), "file.bad") }
+      let(:path) { File.expand_path("../file.bad", __FILE__) }
       before(:each) { File.stub(:file?).with(path).and_return(true) }
       it "should raise \"Unknown extension '{extension}'\"" do
         expect do
@@ -85,8 +85,8 @@ describe Musk::Track do
     end
 
     context "when path is a existing file that is supported" do
-      let(:path) { File.join(File.dirname(__FILE__), "../tracks/bonobo/jets.mp3") }
-      it "should load a track from the file" do
+      let(:path) { File.expand_path("../../../tracks/bonobo/jets.mp3", __FILE__) }
+      it "should create a track from the file" do
         tracks = subject.class.load!(path)
         tracks.count.should eq(1)
         tracks.first.title.should eq("Jets")
