@@ -1,24 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'musk'
-require 'gli'
+require 'musk/app'
 
-include GLI::App
-
-desc 'Extract meta-data (tags) from MP3 files'
-arg_name 'path_to_file or path_to_files'
-command :extract do |command|
-  command.arg_name "format"
-  command.default_value "pretty"
-  command.flag [:f, :format]
-  command.action do |global_options, options, arguments|
-    begin
-      Musk::TrackFormatter.format!(options[:f], Musk::Track.load!(arguments.first))
-    rescue RuntimeError => error
-      STDERR.puts error
-      exit 1
-    end
-  end
-end
-
-exit run(ARGV)
+include Musk::App
