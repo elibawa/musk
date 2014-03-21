@@ -3,4 +3,5 @@
 .ruby-version
 .bundle
 .rspec
+coverage
 TODO
