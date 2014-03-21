@@ -1,6 +1,10 @@
+$LOAD_PATH << File.expand_path('../lib', __FILE__)
+
+require 'musk/version'
+
 Gem::Specification.new do |s|
+  s.version     = Musk::VERSION
   s.name        = 'musk'
-  s.version     = '0.0.1'
   s.summary     = 'Your music with the demonic scent of musk'
   s.description = 'Your music with the demonic scent of musk.'
   s.homepage    = 'https://github.com/pempel/musk'
