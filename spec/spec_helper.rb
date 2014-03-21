@@ -1,3 +1,9 @@
+require 'simplecov'
+
+SimpleCov.start do
+  add_filter ".bundle"
+end
+
 require 'factory_girl'
 require 'musk'
 
