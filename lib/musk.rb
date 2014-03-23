@@ -1,5 +1,3 @@
-class Musk
-  def self.hi
-    "Hello world!"
-  end
-end
+require "musk/track"
+require "musk/track_loader"
+require "musk/track_printer"
