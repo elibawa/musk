@@ -1,7 +1,7 @@
 module Musk
   module Format
     class Pretty
-      def self.format(tracks)
+      def self.print(tracks)
         tracks.each_with_index do |track, index|
           puts if index > 0
           printf("%-10s%s\n", "Path:",     track.path)

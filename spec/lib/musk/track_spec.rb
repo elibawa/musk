@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Musk::Track do
   it { should respond_to(:path) }
@@ -18,79 +18,12 @@ describe Musk::Track do
   it { should respond_to(:comment) }
   it { should respond_to(:comment=) }
 
-  describe ".supported_formats" do
-    it "should return ['mp3']" do
-      subject.class.supported_formats.should eq(['mp3'])
-    end
-  end
-
-  describe ".supported_extensions" do
-    it "should return ['.mp3']" do
-      subject.class.supported_extensions.should eq(['.mp3'])
-    end
-  end
-
-  describe ".load!(path)" do
-    context "when path.nil?" do
-      it "should raise \"Undefined path to a file or files\"" do
-        expect do
-          subject.class.load!(nil)
-        end.to raise_error("Undefined path to a file or files")
-      end
-    end
-
-    context "when path.empty?" do
-      it "should raise \"Undefined path to a file or files\"" do
-        expect do
-          subject.class.load!("")
-        end.to raise_error("Undefined path to a file or files")
-      end
-    end
-
-    context "when path is a nonexistent directory" do
-      let(:path) { File.expand_path("../nonexistent", __FILE__) }
-      it "should raise \"Unknown path '{path}' to a file or files\"" do
-        expect do
-          subject.class.load!(path)
-        end.to raise_error("Unknown path '#{path}' to a file or files")
-      end
-    end
-
-    context "when path is an exisiting directory" do
-      let(:path) { File.expand_path("../../../tracks", __FILE__) }
-      it "should create tracks from files in the directory and its subdirectories" do
-        tracks = subject.class.load!(path)
-        tracks.count.should eq(2)
-        tracks.map(&:title).should eq(["Jets", "Kamakura"])
-      end
-    end
-
-    context "when path is a nonexistent file" do
-      let(:path) { File.expand_path("../nonexistent.mp3", __FILE__) }
-      it "should raise \"Unknown path '{path}' to a file or files\"" do
-        expect do
-          subject.class.load!(path)
-        end.to raise_error("Unknown path '#{path}' to a file or files")
-      end
-    end
-
-    context "when path is an existing file that is unsupported" do
-      let(:path) { File.expand_path("../file.bad", __FILE__) }
-      before(:each) { File.stub(:file?).with(path).and_return(true) }
-      it "should raise \"Unknown extension '{extension}'\"" do
-        expect do
-          subject.class.load!(path)
-        end.to raise_error("Unknown extension '.bad'")
-      end
-    end
-
-    context "when path is a existing file that is supported" do
-      let(:path) { File.expand_path("../../../tracks/bonobo/jets.mp3", __FILE__) }
-      it "should create a track from the file" do
-        tracks = subject.class.load!(path)
-        tracks.count.should eq(1)
-        tracks.first.title.should eq("Jets")
-      end
+  describe "#attributes" do
+    it "should return a track attributes hash" do
+      track = build(:jets_track)
+      track.attributes.should eq(Hash[
+        Musk::Track::ATTRIBUTES.map {|a| [a, track.send("#{a}")]}
+      ])
     end
   end
 end

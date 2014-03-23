@@ -1,7 +1,7 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Musk::Format::Pretty do
-  describe ".format(tracks)" do
+  describe ".print(tracks)" do
     let(:tracks) do
       [build(:jets_track), build(:kamakura_track)]
     end
@@ -20,7 +20,7 @@ describe Musk::Format::Pretty do
     end
 
     it "should print tracks to STDOUT in the pretty format" do
-      capture(:stdout) { Musk::Format::Pretty.format(tracks) }.should eq(stdout)
+      capture_stdout { subject.class.print(tracks) }.should eq(stdout)
     end
   end
 end

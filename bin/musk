@@ -1,5 +1,26 @@
 #!/usr/bin/env ruby
 
-require 'musk/app'
+require "gli"
+require "musk/track_loader"
+require "musk/track_printer"
 
-include Musk::App
+extend GLI::App
+
+desc "Extract meta-data (tags) from MP3 files"
+arg_name "path_to_file or path_to_files"
+command :extract do |command|
+  command.arg_name "format"
+  command.default_value "pretty"
+  command.flag [:f, :format]
+  command.action do |global_options, options, arguments|
+    begin
+      tracks = Musk::TrackLoader.load!(arguments.first)
+      Musk::TrackPrinter.print!(options[:f], tracks)
+    rescue RuntimeError => error
+      STDERR.puts error
+      exit 1
+    end
+  end
+end
+
+exit run(ARGV)
