@@ -23,6 +23,8 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "pry", "~> 0.9"
   s.add_development_dependency "rspec", "~> 2.14"
+  s.add_development_dependency "guard", "~> 2.5"
+  s.add_development_dependency "guard-rspec", "~> 4.2"
   s.add_development_dependency "factory_girl", "~> 4.4"
   s.add_development_dependency "simplecov", "~> 0.8"
 end
