@@ -1,11 +1,11 @@
-require "musk/format/pretty"
+require "musk/formatter/pretty"
 
 module Musk
   class TrackPrinter
     def self.print!(format, tracks)
       case format.to_s.to_sym
       when :pretty
-        Format::Pretty.print(tracks)
+        Musk::Formatter::Pretty.print(tracks)
       else
         raise "Unknown format '#{format}'"
       end

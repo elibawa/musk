@@ -5,8 +5,10 @@ describe Musk::Track do
   it { should respond_to(:path=) }
   it { should respond_to(:title) }
   it { should respond_to(:title=) }
-  it { should respond_to(:position) }
-  it { should respond_to(:position=) }
+  it { should respond_to(:position_number) }
+  it { should respond_to(:position_number=) }
+  it { should respond_to(:positions_count) }
+  it { should respond_to(:positions_count=) }
   it { should respond_to(:artist) }
   it { should respond_to(:artist=) }
   it { should respond_to(:album) }

@@ -1,8 +1,11 @@
+require "musk/decorator/printable_track"
+
 module Musk
-  module Format
+  module Formatter
     class Pretty
       def self.print(tracks)
         tracks.each_with_index do |track, index|
+          track = Musk::Decorator::PrintableTrack.new(track)
           puts if index > 0
           printf("%-10s%s\n", "Path:",     track.path)
           printf("%-10s%s\n", "Title:",    track.title)

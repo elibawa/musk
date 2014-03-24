@@ -5,17 +5,17 @@ describe Musk::TrackPrinter do
     let(:tracks) { build_list(:track, 2) }
 
     context "when format is the pretty format" do
-      it "should call Musk::Format::Pretty.print(tracks)" do
-        allow(Musk::Format::Pretty).to receive(:print).with(tracks)
-        subject.class.print!('pretty', tracks)
-        expect(Musk::Format::Pretty).to have_received(:print).with(tracks)
+      it "should call Musk::Formatter::Pretty.print(tracks)" do
+        allow(Musk::Formatter::Pretty).to receive(:print).with(tracks)
+        described_class.print!('pretty', tracks)
+        expect(Musk::Formatter::Pretty).to have_received(:print).with(tracks)
       end
     end
 
     context "when format is an unsupported format" do
       it "should raise \"Unknown format '{format}'\"" do
         error = "Unknown format 'unsupported'"
-        expect { subject.class.print!('unsupported', tracks) }.to raise_error(error)
+        expect { described_class.print!('unsupported', tracks) }.to raise_error(error)
       end
     end
   end

@@ -5,7 +5,8 @@ FactoryGirl.define do
   factory :jets_track, parent: :track do
     path File.join(ENV["MUSK_TRACKS_PATH"], "bonobo/jets.mp3")
     title "Jets"
-    position 6
+    position_number 6
+    positions_count 13
     artist "Bonobo"
     album "The North Borders"
     genre "Electronic"
@@ -19,7 +20,8 @@ FactoryGirl.define do
   factory :kamakura_track, parent: :track do
     path File.join(ENV["MUSK_TRACKS_PATH"], "emancipator/kamakura.mp3")
     title "Kamakura"
-    position 4
+    position_number 4
+    positions_count 14
     artist "Emancipator"
     album "Safe In The Steep Cliffs"
     genre "Electronic"
