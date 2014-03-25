@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 
 require "gli"
-require "musk/track_loader"
-require "musk/track_printer"
+require "musk"
 
 extend GLI::App
 

@@ -1,5 +1,3 @@
-require "musk/decorator/printable_track"
-
 module Musk
   module Formatter
     class Pretty

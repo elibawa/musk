@@ -1,3 +1,7 @@
+require "musk/decorator/printable_track"
+require "musk/formatter/csv"
+require "musk/formatter/pretty"
 require "musk/track"
 require "musk/track_loader"
 require "musk/track_printer"
+require "musk/version"

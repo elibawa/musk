@@ -1,6 +1,3 @@
-require "musk/formatter/csv"
-require "musk/formatter/pretty"
-
 module Musk
   class TrackPrinter
     def self.print!(format, tracks)
