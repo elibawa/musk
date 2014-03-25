@@ -7,9 +7,9 @@ require "musk/track_printer"
 extend GLI::App
 
 desc "Extract meta-data (tags) from MP3 files"
-arg_name "path_to_file or path_to_files"
+arg_name "path_to_files"
 command :extract do |command|
-  command.arg_name "format"
+  command.arg_name "csv|pretty"
   command.default_value "pretty"
   command.flag [:f, :format]
   command.action do |global_options, options, arguments|

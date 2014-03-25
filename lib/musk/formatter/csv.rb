@@ -2,7 +2,7 @@ require "musk/decorator/printable_track"
 
 module Musk
   module Formatter
-    class Pretty
+    class CSV
       ATTRIBUTES = [
         :path,
         :title,
@@ -15,12 +15,9 @@ module Musk
       ]
 
       def self.print(tracks)
-        tracks.each_with_index do |track, index|
-          puts if index > 0
-          ATTRIBUTES.map do |attribute|
-            track = Musk::Decorator::PrintableTrack.new(track)
-            printf("%-10s%s\n", "#{attribute.capitalize}:", track.send(attribute))
-          end
+        tracks.each do |track|
+          track = Musk::Decorator::PrintableTrack.new(track)
+          puts ATTRIBUTES.map {|a| track.send(a)}.join(",")
         end
       end
     end

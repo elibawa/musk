@@ -25,14 +25,14 @@ describe Musk::Decorator::PrintableTrack do
     end
   end
 
-  it_should_behave_like "a decorator with zeroable attributes", [
+  it_should_behave_like "the track decorator with zeroable attributes", [
     :position_number,
     :positions_count,
     :comment,
     :year,
   ]
 
-  it_should_behave_like "a decorator with nullable attributes", [
+  it_should_behave_like "the track decorator with nullable attributes", [
     :title,
     :artist,
     :album,
