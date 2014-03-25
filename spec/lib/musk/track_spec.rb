@@ -1,8 +1,10 @@
 require "spec_helper"
 
 describe Musk::Track do
-  it { should respond_to(:path) }
-  it { should respond_to(:path=) }
+  it { should respond_to(:loadpath) }
+  it { should respond_to(:loadpath=) }
+  it { should respond_to(:fullpath) }
+  it { should respond_to(:fullpath=) }
   it { should respond_to(:title) }
   it { should respond_to(:title=) }
   it { should respond_to(:position_number) }

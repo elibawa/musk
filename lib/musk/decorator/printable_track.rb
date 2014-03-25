@@ -5,6 +5,10 @@ module Musk
         @track = track
       end
 
+      def path
+        @track.fullpath.gsub(@track.loadpath, "")
+      end
+
       def position
         "#{position_number}/#{positions_count}"
       end
@@ -15,7 +19,7 @@ module Musk
         end
       end
 
-      [:path, :title, :artist, :album, :genre].each do |method|
+      [:title, :artist, :album, :genre].each do |method|
         define_method(method) do
           @track.send(method) or "-"
         end

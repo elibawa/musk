@@ -3,7 +3,8 @@ FactoryGirl.define do
   end
 
   factory :jets_track, parent: :track do
-    path File.join(ENV["MUSK_TRACKS_PATH"], "bonobo/jets.mp3")
+    loadpath ENV["MUSK_TRACKS_PATH"]
+    fullpath File.join(ENV["MUSK_TRACKS_PATH"], "bonobo/jets.mp3")
     title "Jets"
     position_number 6
     positions_count 13
@@ -18,7 +19,8 @@ FactoryGirl.define do
   end
 
   factory :kamakura_track, parent: :track do
-    path File.join(ENV["MUSK_TRACKS_PATH"], "emancipator/kamakura.mp3")
+    loadpath ENV["MUSK_TRACKS_PATH"]
+    fullpath File.join(ENV["MUSK_TRACKS_PATH"], "emancipator/kamakura.mp3")
     title "Kamakura"
     position_number 4
     positions_count 14

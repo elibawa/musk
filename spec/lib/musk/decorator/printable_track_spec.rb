@@ -1,20 +1,17 @@
 require "spec_helper"
 
 describe Musk::Decorator::PrintableTrack do
-  it_should_behave_like "a decorator with zeroable attributes", [
-    :position_number,
-    :positions_count,
-    :comment,
-    :year,
-  ]
-
-  it_should_behave_like "a decorator with nullable attributes", [
-    :path,
-    :title,
-    :artist,
-    :album,
-    :genre,
-  ]
+  describe "#path" do
+    it "should return track.fullpath.gsub(track.loadpath, '')" do
+      track = build(:track)
+      allow(track).to receive(:loadpath).and_return("/tmp")
+      allow(track).to receive(:fullpath).and_return("/tmp/tracks/track.mp3")
+      path = described_class.new(track).path
+      path.should eq("/tracks/track.mp3")
+      expect(track).to have_received(:loadpath)
+      expect(track).to have_received(:fullpath)
+    end
+  end
 
   describe "#position" do
     it "should return '{position_number}/{positions_count}'" do
@@ -27,4 +24,18 @@ describe Musk::Decorator::PrintableTrack do
       expect(track).to have_received(:positions_count)
     end
   end
+
+  it_should_behave_like "a decorator with zeroable attributes", [
+    :position_number,
+    :positions_count,
+    :comment,
+    :year,
+  ]
+
+  it_should_behave_like "a decorator with nullable attributes", [
+    :title,
+    :artist,
+    :album,
+    :genre,
+  ]
 end

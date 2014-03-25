@@ -1,14 +1,17 @@
 module Musk
   class Track
-    ATTRIBUTES = [:path,
-                  :title,
-                  :position_number,
-                  :positions_count,
-                  :artist,
-                  :album,
-                  :genre,
-                  :year,
-                  :comment]
+    ATTRIBUTES = [
+      :loadpath,
+      :fullpath,
+      :title,
+      :position_number,
+      :positions_count,
+      :artist,
+      :album,
+      :genre,
+      :year,
+      :comment,
+    ]
 
     attr_accessor *ATTRIBUTES
 
