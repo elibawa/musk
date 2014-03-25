@@ -1,5 +1,4 @@
 require "taglib"
-require "musk/track"
 
 module Musk
   class TrackLoader

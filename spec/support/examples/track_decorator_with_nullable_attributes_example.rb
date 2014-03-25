@@ -1,5 +1,5 @@
-shared_examples "a decorator with nullable attributes" do |attributes|
-  subject { Musk::Decorator::PrintableTrack }
+shared_examples "the track decorator with nullable attributes" do |attributes|
+  let(:decorator) { Musk::Decorator::PrintableTrack }
 
   attributes.each do |attribute|
     describe "##{attribute}" do
@@ -7,7 +7,7 @@ shared_examples "a decorator with nullable attributes" do |attributes|
         it "should return '-'" do
           track = build(:track)
           allow(track).to receive(attribute).and_return(nil)
-          subject.new(track).send(attribute).should eq("-")
+          decorator.new(track).send(attribute).should eq("-")
         end
       end
 
@@ -15,7 +15,7 @@ shared_examples "a decorator with nullable attributes" do |attributes|
         it "should return track.#{attribute}" do
           track = build(:track)
           allow(track).to receive(attribute).and_return("VaLuE")
-          subject.new(track).send(attribute).should eq("VaLuE")
+          decorator.new(track).send(attribute).should eq("VaLuE")
         end
       end
     end
