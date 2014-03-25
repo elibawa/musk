@@ -3,14 +3,6 @@ require "musk/track"
 
 module Musk
   class TrackLoader
-    def self.supported_formats
-      ["mp3"]
-    end
-
-    def self.supported_extensions
-      supported_formats.map {|f| ".#{f}"}
-    end
-
     def self.load!(path)
       unless path and path.length > 0
         raise "Undefined path to a file or files"
@@ -19,25 +11,30 @@ module Musk
         raise "Unknown path '#{path}' to a file or files"
       end
       if File.file?(path)
-        unless supported_extensions.include?(File.extname(path))
+        unless File.extname(path) == ".mp3"
           raise "Unknown extension '#{File.extname(path)}'"
         end
       end
-      if File.directory?(path)
-        path = File.join(path, "**", "*.{#{supported_formats.join(',')}}")
-      end
-      Dir[path].map do |path|
+      path = File.expand_path(path)
+      loadpath = File.file?(path) ? File.dirname(path) : path
+      deeppath = File.file?(path) ? path : File.join(path, "**", "*.mp3")
+      Dir[deeppath].map do |fullpath|
         track = Musk::Track.new
-        track.path = path
-        TagLib::MPEG::File.open(path) do |file|
+        track.loadpath = loadpath
+        track.fullpath = fullpath
+        TagLib::MPEG::File.open(fullpath) do |file|
           tag = file.id3v2_tag
-          track.title    = tag.title
-          track.position = tag.track
-          track.artist   = tag.artist
-          track.album    = tag.album
-          track.genre    = tag.genre
-          track.year     = tag.year
-          track.comment  = tag.comment
+          if tag.frame_list("TRCK").first
+            number, count = tag.frame_list("TRCK").first.to_s.split("/")
+            track.position_number = number.to_i
+            track.positions_count = count.to_i
+          end
+          track.title   = tag.title
+          track.artist  = tag.artist
+          track.album   = tag.album
+          track.genre   = tag.genre
+          track.year    = tag.year
+          track.comment = tag.comment
         end
         track
       end
