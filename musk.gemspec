@@ -27,4 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "guard-rspec", "~> 4.2"
   s.add_development_dependency "factory_girl", "~> 4.4"
   s.add_development_dependency "simplecov", "~> 0.8"
+  s.add_development_dependency "coveralls", "~> 0.7"
 end
