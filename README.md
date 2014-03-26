@@ -1,7 +1,7 @@
 ## Musk
 
 [![Build Status](https://travis-ci.org/pempel/musk.svg?branch=master)](https://travis-ci.org/pempel/musk)
-[![Coverage Status](https://coveralls.io/repos/pempel/musk/badge.png)](https://coveralls.io/r/pempel/musk)
+[![Coverage Status](https://coveralls.io/repos/pempel/musk/badge.png?branch=master)](https://coveralls.io/r/pempel/musk?branch=master)
 [![Gem Version](https://badge.fury.io/rb/musk.png)](http://badge.fury.io/rb/musk)
 
 Use musk to impart the demonic scent of musk to your music.
