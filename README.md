@@ -10,7 +10,19 @@ with fragrant tags.
 
 ## Installation
 
-Manually from RubyGems.org:
+If you're on Ubuntu, you need to have the following packages
+that `musk` depends on: ruby-dev and libtag1-dev. To install
+these dependencies, you can use:
+
+    sudo apt-get update
+    sudo apt-get install ruby-dev libtag1-dev
+
+If you're on Mac OS X, you can use:
+
+    brew update
+    brew install taglib
+
+When you have all the necessary dependencies, you can use:
 
     gem install musk
 
@@ -78,8 +90,6 @@ several commands together. For example,
     Kamakura
 
 ## License
-
-(The MIT license)
 
 Copyright (c) 2014 Eugene Pempel
 
