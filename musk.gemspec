@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.description   = "Extract tags from MP3 files and perfume MP3 files with fragrant tags."
   s.homepage      = "https://github.com/pempel/musk"
   s.license       = "MIT"
+  s.platform      = Gem::Platform::RUBY
   s.version       = Musk::VERSION
   s.date          = Time.now
 
