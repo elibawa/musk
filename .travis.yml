@@ -1,8 +1,10 @@
+script: "bundle exec rspec spec"
+before_install:
+  - "apt-get install ruby-dev libtag1-dev"
+
 language: ruby
 rvm:
   - 2.1.1
-
-script: "bundle exec rspec spec"
 
 branches:
   only:
