@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "taglib-ruby", "~> 0.6"
 
   s.add_development_dependency "pry", "~> 0.9"
+  s.add_development_dependency "pry-nav", "~> 0.2"
   s.add_development_dependency "rspec", "~> 2.14"
   s.add_development_dependency "guard", "~> 2.5"
   s.add_development_dependency "guard-rspec", "~> 4.2"
