@@ -7,7 +7,7 @@ module Musk
       :position_number,
       :positions_count,
       :artist,
-      :album,
+      :release,
       :genre,
       :year,
       :comment,

@@ -19,7 +19,7 @@ module Musk
         end
       end
 
-      [:title, :artist, :album, :genre].each do |method|
+      [:title, :artist, :release, :genre].each do |method|
         define_method(method) do
           @track.send(method) or "-"
         end

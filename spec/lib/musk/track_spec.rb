@@ -13,8 +13,8 @@ describe Musk::Track do
   it { should respond_to(:positions_count=) }
   it { should respond_to(:artist) }
   it { should respond_to(:artist=) }
-  it { should respond_to(:album) }
-  it { should respond_to(:album=) }
+  it { should respond_to(:release) }
+  it { should respond_to(:release=) }
   it { should respond_to(:genre) }
   it { should respond_to(:genre=) }
   it { should respond_to(:year) }

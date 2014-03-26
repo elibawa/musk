@@ -9,7 +9,7 @@ FactoryGirl.define do
     position_number 6
     positions_count 13
     artist "Bonobo"
-    album "The North Borders"
+    release "The North Borders"
     genre "Electronic"
     year 2013
 
@@ -25,7 +25,7 @@ FactoryGirl.define do
     position_number 4
     positions_count 14
     artist "Emancipator"
-    album "Safe In The Steep Cliffs"
+    release "Safe In The Steep Cliffs"
     genre "Electronic"
     year 2010
 

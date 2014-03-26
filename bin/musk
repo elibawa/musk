@@ -5,7 +5,9 @@ require "musk"
 
 extend GLI::App
 
-desc "Extract meta-data (tags) from MP3 files"
+program_desc "Extract tags from MP3 files and perfume MP3 files with fragrant tags."
+
+desc "Extract tags from MP3 files"
 arg_name "path_to_files"
 command :extract do |command|
   command.arg_name "csv|pretty"

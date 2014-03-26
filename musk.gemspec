@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name          = "musk"
   s.author        = "Eugene Pempel"
   s.email         = "eugene.pempel@gmail.com"
-  s.summary       = "Your music with the demonic scent of musk"
-  s.description   = "Your music with the demonic scent of musk."
+  s.summary       = "Yet another MP3 tagging tool."
+  s.description   = "Extract tags from MP3 files and perfume MP3 files with fragrant tags."
   s.homepage      = "https://github.com/pempel/musk"
   s.license       = "MIT"
   s.version       = Musk::VERSION

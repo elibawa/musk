@@ -35,7 +35,7 @@ describe Musk::Decorator::PrintableTrack do
   it_should_behave_like "the track decorator with nullable attributes", [
     :title,
     :artist,
-    :album,
+    :release,
     :genre,
   ]
 end

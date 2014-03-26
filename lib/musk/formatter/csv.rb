@@ -6,7 +6,7 @@ module Musk
         :title,
         :position,
         :artist,
-        :album,
+        :release,
         :genre,
         :year,
         :comment,

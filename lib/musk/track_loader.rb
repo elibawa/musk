@@ -15,7 +15,7 @@ module Musk
         end
       end
       path = File.expand_path(path)
-      loadpath = File.file?(path) ? File.dirname(path) : path
+      loadpath = "#{File.file?(path) ? File.dirname(path) : path}#{File::SEPARATOR}"
       deeppath = File.file?(path) ? path : File.join(path, "**", "*.mp3")
       Dir[deeppath].map do |fullpath|
         track = Musk::Track.new
@@ -30,7 +30,7 @@ module Musk
           end
           track.title   = tag.title
           track.artist  = tag.artist
-          track.album   = tag.album
+          track.release = tag.album
           track.genre   = tag.genre
           track.year    = tag.year
           track.comment = tag.comment
