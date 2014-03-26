@@ -5,6 +5,9 @@ SimpleCov.start do
   add_filter "spec/"
 end
 
+require "coveralls"
+Coveralls.wear!
+
 ENV["MUSK_TRACKS_PATH"] = File.expand_path("../support/tracks", __FILE__)
 
 require "factory_girl"
