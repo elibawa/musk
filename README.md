@@ -5,6 +5,7 @@
 [![Coverage Status](https://img.shields.io/coveralls/pempel/musk/master.svg)](https://coveralls.io/r/pempel/musk?branch=master)
 [![Build Status](https://img.shields.io/travis/pempel/musk/master.svg)](https://travis-ci.org/pempel/musk)
 [![Dependency Status](https://img.shields.io/gemnasium/pempel/musk.svg)](https://gemnasium.com/pempel/musk)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://tldrlegal.com/license/mit-license)
 
 Use musk to impart the demonic scent of musk to your music.
 Musk allows you to extract tags from MP3 files and perfume MP3 files
