@@ -1,4 +1,5 @@
 require "musk/decorator/printable_track"
+require "musk/formatter/base"
 require "musk/formatter/csv"
 require "musk/formatter/pretty"
 require "musk/track"
