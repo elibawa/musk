@@ -1,10 +1,10 @@
 ## Musk
 
-[![Gem Version](https://badge.fury.io/rb/musk.png)](http://badge.fury.io/rb/musk)
-[![Code Climate](https://codeclimate.com/github/pempel/musk.png)](https://codeclimate.com/github/pempel/musk)
-[![Coverage Status](https://coveralls.io/repos/pempel/musk/badge.png?branch=master)](https://coveralls.io/r/pempel/musk?branch=master)
-[![Build Status](https://travis-ci.org/pempel/musk.png?branch=master)](https://travis-ci.org/pempel/musk)
-[![Dependency Status](https://gemnasium.com/pempel/musk.png)](https://gemnasium.com/pempel/musk)
+[![Gem Version](https://img.shields.io/gem/v/musk.svg)](https://badge.fury.io/rb/musk)
+[![Code Climate](https://img.shields.io/codeclimate/github/pempel/musk.svg)](https://codeclimate.com/github/pempel/musk)
+[![Coverage Status](https://img.shields.io/coveralls/pempel/musk/master.svg)](https://coveralls.io/r/pempel/musk?branch=master)
+[![Build Status](https://img.shields.io/travis/pempel/musk/master.svg)](https://travis-ci.org/pempel/musk)
+[![Dependency Status](https://img.shields.io/gemnasium/pempel/musk.svg)](https://gemnasium.com/pempel/musk)
 
 Use musk to impart the demonic scent of musk to your music.
 Musk allows you to extract tags from MP3 files and perfume MP3 files
