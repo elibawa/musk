@@ -1,22 +1,23 @@
 module Musk
   module Formatter
     class CSV
-      ATTRIBUTES = [
-        :path,
-        :title,
-        :position,
-        :artist,
-        :release,
-        :genre,
-        :year,
-        :comment,
-      ]
-
       def self.print(tracks)
-        tracks.each do |track|
-          track = Musk::Decorator::PrintableTrack.new(track)
-          puts ATTRIBUTES.map {|a| track.send(a)}.join(",")
-        end
+        new(tracks).print
+      end
+
+      def initialize(tracks)
+        @tracks = tracks.map { |t| Musk::Decorator::PrintableTrack.new(t) }
+        @fields = [:path, :title, :position, :artist, :release, :genre, :year, :comment]
+      end
+
+      def print
+        @tracks.each { |t| puts printed(t) }
+      end
+
+      private
+
+      def printed(track)
+        @fields.map { |f| track.send(f) }.join(",")
       end
     end
   end

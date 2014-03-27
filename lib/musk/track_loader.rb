@@ -3,18 +3,36 @@ require "taglib"
 module Musk
   class TrackLoader
     def self.load!(path)
-      unless path and path.length > 0
+      new(path).load!
+    end
+
+    def initialize(path)
+      @path = path
+    end
+
+    def load!
+      verify_tracks!
+      create_tracks!
+    end
+
+    private
+
+    def verify_tracks!
+      unless @path and @path.length > 0
         raise "Undefined path to a file or files"
       end
-      unless File.file?(path) or File.directory?(path)
-        raise "Unknown path '#{path}' to a file or files"
+      unless File.file?(@path) or File.directory?(@path)
+        raise "Unknown path '#{@path}' to a file or files"
       end
-      if File.file?(path)
-        unless File.extname(path) == ".mp3"
-          raise "Unknown extension '#{File.extname(path)}'"
+      if File.file?(@path)
+        unless File.extname(@path) == ".mp3"
+          raise "Unknown extension '#{File.extname(@path)}'"
         end
       end
-      path = File.expand_path(path)
+    end
+
+    def create_tracks!
+      path = File.expand_path(@path)
       loadpath = "#{File.file?(path) ? File.dirname(path) : path}#{File::SEPARATOR}"
       deeppath = File.file?(path) ? path : File.join(path, "**", "*.mp3")
       Dir[deeppath].map do |fullpath|

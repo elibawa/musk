@@ -1,25 +1,23 @@
 module Musk
   module Formatter
     class Pretty
-      ATTRIBUTES = [
-        :path,
-        :title,
-        :position,
-        :artist,
-        :release,
-        :genre,
-        :year,
-        :comment,
-      ]
-
       def self.print(tracks)
-        tracks.each_with_index do |track, index|
-          track = Musk::Decorator::PrintableTrack.new(track)
-          puts if index > 0
-          ATTRIBUTES.map do |attribute|
-            printf("%-10s%s\n", "#{attribute.capitalize}:", track.send(attribute))
-          end
-        end
+        new(tracks).print
+      end
+
+      def initialize(tracks)
+        @tracks = tracks.map { |t| Musk::Decorator::PrintableTrack.new(t) }
+        @fields = [:path, :title, :position, :artist, :release, :genre, :year, :comment]
+      end
+
+      def print
+        puts @tracks.map { |t| printed(t) }.join("\n")
+      end
+
+      private
+
+      def printed(track)
+        @fields.map { |f| sprintf("%-10s%s\n", "#{f.capitalize}:", track.send(f)) }.join
       end
     end
   end
