@@ -1,11 +1,11 @@
 ## Musk
 
-[![Gem Version](https://img.shields.io/gem/v/musk.svg)](https://badge.fury.io/rb/musk)
-[![Code Climate](https://img.shields.io/codeclimate/github/pempel/musk.svg)](https://codeclimate.com/github/pempel/musk)
-[![Coverage Status](https://img.shields.io/coveralls/pempel/musk/master.svg)](https://coveralls.io/r/pempel/musk?branch=master)
-[![Build Status](https://img.shields.io/travis/pempel/musk/master.svg)](https://travis-ci.org/pempel/musk)
-[![Dependency Status](https://img.shields.io/gemnasium/pempel/musk.svg)](https://gemnasium.com/pempel/musk)
-[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://tldrlegal.com/license/mit-license)
+[![Gem Version](http://img.shields.io/gem/v/musk.svg)](https://badge.fury.io/rb/musk)
+[![Code Climate](http://img.shields.io/codeclimate/github/pempel/musk.svg)](https://codeclimate.com/github/pempel/musk)
+[![Coverage Status](http://img.shields.io/coveralls/pempel/musk/master.svg)](https://coveralls.io/r/pempel/musk?branch=master)
+[![Build Status](http://img.shields.io/travis/pempel/musk/master.svg)](https://travis-ci.org/pempel/musk)
+[![Dependency Status](http://img.shields.io/gemnasium/pempel/musk.svg)](https://gemnasium.com/pempel/musk)
+[![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](https://tldrlegal.com/license/mit-license)
 
 Use musk to impart the demonic scent of musk to your music.
 Musk allows you to extract tags from MP3 files and perfume MP3 files
