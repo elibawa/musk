@@ -4,6 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/pempel/musk.png)](https://codeclimate.com/github/pempel/musk)
 [![Coverage Status](https://coveralls.io/repos/pempel/musk/badge.png?branch=master)](https://coveralls.io/r/pempel/musk?branch=master)
 [![Build Status](https://travis-ci.org/pempel/musk.png?branch=master)](https://travis-ci.org/pempel/musk)
+[![Dependency Status](https://gemnasium.com/pempel/musk.png)](https://gemnasium.com/pempel/musk)
 
 Use musk to impart the demonic scent of musk to your music.
 Musk allows you to extract tags from MP3 files and perfume MP3 files
