@@ -26,7 +26,7 @@ describe Musk::Track do
     it "should return a track attributes hash" do
       track = build(:jets_track)
       track.attributes.should eq(Hash[
-        Musk::Track::ATTRIBUTES.map {|a| [a, track.send("#{a}")]}
+        Musk::Track::ATTRIBUTES.map { |a| [a, track.send("#{a}")] }
       ])
     end
   end

@@ -16,7 +16,7 @@ module Musk
     attr_accessor *ATTRIBUTES
 
     def attributes
-      Hash[ATTRIBUTES.map {|a| [a, send("#{a}")]}]
+      Hash[ATTRIBUTES.map { |a| [a, send("#{a}")] }]
     end
   end
 end
