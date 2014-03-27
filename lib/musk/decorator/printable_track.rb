@@ -13,16 +13,36 @@ module Musk
         "#{position_number}/#{positions_count}"
       end
 
-      [:position_number, :positions_count, :year, :comment].each do |method|
-        define_method(method) do
-          [nil, 0, "0"].include?(@track.send(method)) ? "-" : @track.send(method)
-        end
+      def position_number
+        [nil, 0, "0"].include?(@track.position_number) ? "-" : @track.position_number
       end
 
-      [:title, :artist, :release, :genre].each do |method|
-        define_method(method) do
-          @track.send(method) or "-"
-        end
+      def positions_count
+        [nil, 0, "0"].include?(@track.positions_count) ? "-" : @track.positions_count
+      end
+
+      def year
+        [nil, 0, "0"].include?(@track.year) ? "-" : @track.year
+      end
+
+      def comment
+        [nil, 0, "0"].include?(@track.comment) ? "-" : @track.comment
+      end
+
+      def title
+        @track.title or "-"
+      end
+
+      def artist
+        @track.artist or "-"
+      end
+
+      def release
+        @track.release or "-"
+      end
+
+      def genre
+        @track.genre or "-"
       end
     end
   end
