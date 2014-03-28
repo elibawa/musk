@@ -10,15 +10,15 @@ module Musk
       end
 
       def position
-        "#{position_number}/#{positions_count}"
+        "#{number}/#{number_of}"
       end
 
-      def position_number
-        [nil, 0, "0"].include?(@track.position_number) ? "-" : @track.position_number
+      def number
+        [nil, 0, "0"].include?(@track.number) ? "-" : @track.number
       end
 
-      def positions_count
-        [nil, 0, "0"].include?(@track.positions_count) ? "-" : @track.positions_count
+      def number_of
+        [nil, 0, "0"].include?(@track.number_of) ? "-" : @track.number_of
       end
 
       def year

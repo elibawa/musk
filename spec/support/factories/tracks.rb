@@ -6,8 +6,8 @@ FactoryGirl.define do
     loadpath ENV["MUSK_TRACKS_PATH"]
     fullpath File.join(ENV["MUSK_TRACKS_PATH"], "bonobo/jets.mp3")
     title "Jets"
-    position_number "6"
-    positions_count "13"
+    number "6"
+    number_of "13"
     artist "Bonobo"
     release "The North Borders"
     genre "Electronic"
@@ -22,8 +22,8 @@ FactoryGirl.define do
     loadpath ENV["MUSK_TRACKS_PATH"]
     fullpath File.join(ENV["MUSK_TRACKS_PATH"], "emancipator/kamakura.mp3")
     title "Kamakura"
-    position_number "4"
-    positions_count "14"
+    number "4"
+    number_of "14"
     artist "Emancipator"
     release "Safe In The Steep Cliffs"
     genre "Electronic"
