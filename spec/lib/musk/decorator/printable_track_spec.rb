@@ -14,20 +14,20 @@ describe Musk::Decorator::PrintableTrack do
   end
 
   describe "#position" do
-    it "should return '{position_number}/{positions_count}'" do
+    it "should return '{number}/{number_of}'" do
       track = described_class.new(build(:track))
-      allow(track).to receive(:position_number).and_return(1)
-      allow(track).to receive(:positions_count).and_return(2)
+      allow(track).to receive(:number).and_return(1)
+      allow(track).to receive(:number_of).and_return(2)
       position = track.position
       position.should eq("1/2")
-      expect(track).to have_received(:position_number)
-      expect(track).to have_received(:positions_count)
+      expect(track).to have_received(:number)
+      expect(track).to have_received(:number_of)
     end
   end
 
   it_should_behave_like "the track decorator with zeroable attributes", [
-    :position_number,
-    :positions_count,
+    :number,
+    :number_of,
     :comment,
     :year,
   ]
