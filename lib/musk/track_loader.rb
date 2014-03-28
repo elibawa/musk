@@ -57,16 +57,18 @@ module Musk
 
     def create_track(filepath, tag)
       Musk::Track.new.tap do |track|
-        track.loadpath  = loadpath
-        track.fullpath  = filepath
-        track.number    = tag.frame_list("TRCK").first.to_s.split("/").first
-        track.number_of = tag.frame_list("TRCK").first.to_s.split("/").last
-        track.title     = tag.title.to_s
-        track.artist    = tag.artist.to_s
-        track.release   = tag.album.to_s
-        track.genre     = tag.genre.to_s
-        track.year      = tag.year.to_s
-        track.comment   = tag.comment.to_s
+        track.attributes = {
+          loadpath:  loadpath,
+          fullpath:  filepath,
+          number:    tag.frame_list("TRCK").first.to_s.split("/").first,
+          number_of: tag.frame_list("TRCK").first.to_s.split("/").last,
+          title:     tag.title,
+          artist:    tag.artist,
+          release:   tag.album,
+          genre:     tag.genre,
+          year:      tag.year.to_s,
+          comment:   tag.comment,
+        }
       end
     end
   end
