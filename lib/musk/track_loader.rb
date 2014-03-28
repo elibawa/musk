@@ -11,13 +11,13 @@ module Musk
     end
 
     def load!
-      verify_tracks!
-      create_tracks!
+      verify_path!
+      create_tracks
     end
 
     private
 
-    def verify_tracks!
+    def verify_path!
       unless @path and @path.length > 0
         raise "Undefined path to a file or files"
       end
@@ -31,29 +31,42 @@ module Musk
       end
     end
 
-    def create_tracks!
-      path = File.expand_path(@path)
-      loadpath = "#{File.file?(path) ? File.dirname(path) : path}#{File::SEPARATOR}"
-      deeppath = File.file?(path) ? path : File.join(path, "**", "*.mp3")
-      Dir[deeppath].map do |fullpath|
-        track = Musk::Track.new
-        track.loadpath = loadpath
-        track.fullpath = fullpath
-        TagLib::MPEG::File.open(fullpath) do |file|
-          tag = file.id3v2_tag
-          if tag.frame_list("TRCK").first
-            number, count = tag.frame_list("TRCK").first.to_s.split("/")
-            track.position_number = number.to_i
-            track.positions_count = count.to_i
-          end
-          track.title   = tag.title
-          track.artist  = tag.artist
-          track.release = tag.album
-          track.genre   = tag.genre
-          track.year    = tag.year
-          track.comment = tag.comment
+    def fullpath
+      @fullpath ||= File.expand_path(@path)
+    end
+
+    def basepath
+      @basepath ||= File.dirname(fullpath)
+    end
+
+    def loadpath
+      @loadpath ||= "#{File.file?(fullpath) ? basepath : fullpath}#{File::SEPARATOR}"
+    end
+
+    def deeppath
+      @deeppath ||= File.file?(fullpath) ? fullpath : File.join(fullpath, "**", "*.mp3")
+    end
+
+    def create_tracks
+      Dir[deeppath].map do |filepath|
+        TagLib::MPEG::File.open(filepath) do |file|
+          create_track(filepath, file.id3v2_tag)
         end
-        track
+      end
+    end
+
+    def create_track(filepath, tag)
+      Musk::Track.new.tap do |t|
+        t.loadpath        = loadpath
+        t.fullpath        = filepath
+        t.position_number = tag.frame_list("TRCK").first.to_s.split("/").first
+        t.positions_count = tag.frame_list("TRCK").first.to_s.split("/").last
+        t.title           = tag.title.to_s
+        t.artist          = tag.artist.to_s
+        t.release         = tag.album.to_s
+        t.genre           = tag.genre.to_s
+        t.year            = tag.year.to_s
+        t.comment         = tag.comment.to_s
       end
     end
   end
