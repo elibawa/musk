@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    musk (0.1.7)
+    musk (0.1.8)
       gli (~> 2.9)
       taglib-ruby (~> 0.6)
 

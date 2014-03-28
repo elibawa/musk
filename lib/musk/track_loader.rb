@@ -31,45 +31,31 @@ module Musk
       end
     end
 
-    def fullpath
-      @fullpath ||= File.expand_path(@path)
-    end
-
-    def basepath
-      @basepath ||= File.dirname(fullpath)
-    end
-
-    def loadpath
-      @loadpath ||= "#{File.file?(fullpath) ? basepath : fullpath}#{File::SEPARATOR}"
+    def create_tracks
+      Dir[deeppath].map do |filepath|
+        TagLib::MPEG::File.open(filepath) do |file|
+          Musk::TrackAdapter.adapt(file.id3v2_tag).tap do |track|
+            track.loadpath = loadpath
+            track.fullpath = filepath
+          end
+        end
+      end
     end
 
     def deeppath
       @deeppath ||= File.file?(fullpath) ? fullpath : File.join(fullpath, "**", "*.mp3")
     end
 
-    def create_tracks
-      Dir[deeppath].map do |filepath|
-        TagLib::MPEG::File.open(filepath) do |file|
-          create_track(filepath, file.id3v2_tag)
-        end
-      end
+    def loadpath
+      @loadpath ||= "#{File.file?(fullpath) ? basepath : fullpath}#{File::SEPARATOR}"
     end
 
-    def create_track(filepath, tag)
-      Musk::Track.new.tap do |track|
-        track.attributes = {
-          loadpath:  loadpath,
-          fullpath:  filepath,
-          number:    tag.frame_list("TRCK").first.to_s.split("/").first,
-          number_of: tag.frame_list("TRCK").first.to_s.split("/").last,
-          title:     tag.title,
-          artist:    tag.artist,
-          release:   tag.album,
-          genre:     tag.genre,
-          year:      tag.year.to_s,
-          comment:   tag.comment,
-        }
-      end
+    def basepath
+      @basepath ||= File.dirname(fullpath)
+    end
+
+    def fullpath
+      @fullpath ||= File.expand_path(@path)
     end
   end
 end
