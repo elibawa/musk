@@ -15,14 +15,12 @@ module Musk
 
     attr_accessor *ATTRIBUTES
 
-    def attributes
-      Hash[ATTRIBUTES.map { |a| [a, send("#{a}")] }]
+    def initialize(attributes = {})
+      attributes.each { |k, v| send("#{k}=", v) if respond_to?("#{k}=") }
     end
 
-    def attributes=(hash)
-      hash.each do |key, value|
-        send("#{key}=", value) if respond_to?("#{key}=")
-      end
+    def attributes
+      Hash[ATTRIBUTES.map { |a| [a, send("#{a}")] }]
     end
   end
 end
