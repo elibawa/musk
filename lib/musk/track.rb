@@ -18,5 +18,11 @@ module Musk
     def attributes
       Hash[ATTRIBUTES.map { |a| [a, send("#{a}")] }]
     end
+
+    def attributes=(hash)
+      hash.each do |key, value|
+        send("#{key}=", value) if respond_to?("#{key}=")
+      end
+    end
   end
 end
